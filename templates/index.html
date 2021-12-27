@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Mission to Mars</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- Google Font -->
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css?family=Space Mono&effect=fire" />  
+
+      <style>
+        body {
+            background-image: url('https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2139a.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #FFFFFF;}
+            
+        h1 {font-family: "Space Mono", serif;}
+        h2 {font-family: "Space Mono", sans-serif; color:Tomato}
+        h3 {font-family: "Space Mono", sans-serif; color: black}
+        
+        table {
+          background-color: #FFFFFF; color: black;}
+      </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Add Jumbotron to Header -->
+      <div class="jumbotron text-center">
+        <div class="font-effect-fire">  
+          <h1>Mission to Mars</h1>
+        </div>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-success btn-lg active" href="/scrape" role="button">Scrape New Data</a></p>
+      </div>
+      <!-- Add section for Mars News -->
+      <div class="row" id="mars-news">
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-body">
+              <h2>Latest Mars News</h2>
+              <h4 class="media-heading">{{ mars.news_title }}</h4>
+              <p>{{ mars.news_paragraph }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Section for Featured Image and Facts table -->
+      <div class="row" id="mars-featured-image">
+        <div class="col-md-8">
+          <h2>Featured Mars Image</h2>
+          <img
+            src="{{mars.featured_image }}"
+            class="img-responsive"
+            alt="Responsive image"
+          />
+        </div>
+        <div class="col-md-4">
+          <!-- Mars Facts -->
+          <div class="row" id="mars-facts">
+            
+              <h2>Mars Facts</h2>
+              <table>         
+                {{ mars.facts | safe }}
+              </table>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Add section for Mars Hemispheres -->
+      <div class="row" id="mars-hem">
+        <div class="col-md-12 text-center">
+          <h2>Mars Hemispheres</h2>
+            <div>          
+              <!-- Loop through the dictionary -->                  
+              {% for hemisphere in mars.hemisphere_image_urls %}
+                <div class="col-md-6">
+                  <div class="img-thumbnail">
+                    <img
+                      src= "{{ hemisphere.img_url }}"
+                      class="img-responsive"
+                      alt="Responsive image"
+                    />
+                    <h3>{{ hemisphere.title }}</h3>
+                  </div>
+                </div> 
+              {% endfor %}  
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

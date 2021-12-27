@@ -1,3 +1,10 @@
+# Module 10 files to ignore
+Module_10
+Mission_to_Mars.ipynb
+Mission_to_Mars_Challenge.py
+Mission_to_Mars_Challenge_starter_code.ipynb
+Practice.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
